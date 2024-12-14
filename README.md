@@ -63,4 +63,22 @@ sudo snap install helm --classic
 ```bash
 kubectl create namespace tigera-operator
 ```
+* Install the Calico operator in the tigera-operator namespace:
+```bash
+helm install calico projectcalico/tigera-operator --version v3.29.1 --namespace tigera-operator
+```
+### 8. **Verify the Installation**
+* Use `kubectl` to check the status of the Calico pods and all pods:
 
+```bash
+kubectl get pods -n calico-system
+kubecctl get po -A
+```
+# Why Calico?
+*Calico provides powerful networking features for Kubernetes clusters, including NetworkPolicy enforcement, IP address management, and high-performance networking.
+
+*This setup ensures a robust Kubernetes environment with scalable and secure networking.
+
+*It's a great starting point for anyone looking to get hands-on experience with Kubernetes networking.
+
+*Feel free to reach out if you need any help with the process or have any questions!
