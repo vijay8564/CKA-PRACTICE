@@ -1,9 +1,9 @@
 # 🚀 Setting up a Kubernetes Cluster with Kubeadm and Deploying Calico with Helm 🚀
 
-I recently set up a Kubernetes cluster using `kubeadm` and deployed **Calico** as the network plugin via **Helm**. Here’s a quick guide for anyone interested in doing the same:
+* I recently set up a Kubernetes cluster using `kubeadm` and deployed **Calico** as the network plugin via **Helm**. Here’s a quick guide for anyone interested in doing the same:
 ## 🔧 Step-by-step Process:
 ### 1. **Containerd (Container Runtime)**  
-Start by installing and configuring `containerd` as the container runtime for Kubernetes.
+* Start by installing and configuring `containerd` as the container runtime for Kubernetes.
 
 ```bash
 sudo apt-get update
@@ -21,7 +21,7 @@ sudo systemctl daemon-reload
 sudo systemctl status containerd
 ```
 ### 2. **Install Kubernetes Components**
-Add the Kubernetes apt repository and install `kubelet`, `kubeadm`, and `kubectl`:
+* Add the Kubernetes apt repository and install `kubelet`, `kubeadm`, and `kubectl`:
 
 ```bash
 sudo apt-get update
@@ -33,17 +33,17 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 ### 3. ** Enable IP Forwarding**
-Enable IPv4 forwarding to ensure proper network communication for the Kubernetes pods:
+* Enable IPv4 forwarding to ensure proper network communication for the Kubernetes pods:
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
 ### 4. **Initialize Kubernetes Cluster**
-Use `kubeadm init` to initialize the Kubernetes master node. Be sure to set the `--pod-network-cidr` for Calico networking:
+* Use `kubeadm init` to initialize the Kubernetes master node. Be sure to set the `--pod-network-cidr` for Calico networking:
 ```bash
 sudo kubeadm init --pod-network-cidr "10.244.0.0/16" --cri-socket "unix:///var/run/containerd/containerd.sock"
 ```
 ### 5. **Configure kubectl for Your User**
-Set up the Kubernetes configuration file to allow seamless interaction with the cluster:
+* Set up the Kubernetes configuration file to allow seamless interaction with the cluster:
 ```bash
 mkdir -p $HOME/.kube/
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -56,4 +56,11 @@ sudo snap install helm --classic
 ```
 ### 7. **Deploy Calico Using Helm**
 * Add the Calico Helm repository:
+```bash
+  helm repo add projectcalico https://docs.tigera.io/calico/charts
+```
+* Create the tigera-operator namespace:
+```bash
+kubectl create namespace tigera-operator
+```
 
