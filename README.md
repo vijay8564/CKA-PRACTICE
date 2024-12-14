@@ -72,7 +72,7 @@ helm install calico projectcalico/tigera-operator --version v3.29.1 --namespace 
 
 ```bash
 kubectl get pods -n calico-system
-kubecctl get po -A
+kubectl get po -A
 ```
 # Why Calico?
 *Calico provides powerful networking features for Kubernetes clusters, including NetworkPolicy enforcement, IP address management, and high-performance networking.
