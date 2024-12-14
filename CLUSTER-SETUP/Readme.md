@@ -75,13 +75,30 @@ kubectl get pods -n calico-system
 kubectl get po -A
 ```
 ### 9. ** Cluster-setup by cloning this repo**
-* Execute the below commands:
+* Run on Master Node :
 ```bash
 git clone https://github.com/vijay8564/CKA-PRACTICE.git
 cd CKA-PRACTICE/CLUSTER-SETUP
 sudo chmod +x cluster-setup.sh
 ./cluster-setup.sh
 ```
+* Run on Worker Node:
+```bash
+git clone https://github.com/vijay8564/CKA-PRACTICE.git
+cd CKA-PRACTICE/CLUSTER-SETUP
+sudo chmod +x data-plane-setup.sh
+./data-plane-setup.sh
+```
+* Join worker nodes to master execute the command on master:
+```bash
+kubeadm token create --print-join-command
+```
+* Execute the output command on worker node:
+* example
+```bash
+kubeadm join 10.0.0.4:6443 --token 4stkkb.icfxxmkgzrxewwdk --discovery-token-ca-cert-hash sha256:273097875864fb43cf842a1a1a9fc2a6e60cd3b60ec119377ad0970ba313fe3f
+```
+
 # Why Calico?
 *Calico provides powerful networking features for Kubernetes clusters, including NetworkPolicy enforcement, IP address management, and high-performance networking.
 
