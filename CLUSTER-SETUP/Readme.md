@@ -74,6 +74,14 @@ helm install calico projectcalico/tigera-operator --version v3.29.1 --namespace 
 kubectl get pods -n calico-system
 kubectl get po -A
 ```
+### 9. ** Cluster-setup by cloning this repo**
+* Execute the below commands:
+```bash
+git clone https://github.com/vijay8564/CKA-PRACTICE.git
+cd CKA-PRACTICE/CLUSTER-SETUP
+sudo chmod +x cluster-setup.sh
+./cluster-setup.sh
+```
 # Why Calico?
 *Calico provides powerful networking features for Kubernetes clusters, including NetworkPolicy enforcement, IP address management, and high-performance networking.
 
