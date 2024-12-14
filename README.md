@@ -19,5 +19,6 @@ sudo systemctl restart containerd
 sudo systemctl enable containerd
 sudo systemctl daemon-reload
 sudo systemctl status containerd
-
+```
 ### 2. **Install Kubernetes Components**
+Add the Kubernetes apt repository and install `kubelet`, `kubeadm`, and `kubectl`:
