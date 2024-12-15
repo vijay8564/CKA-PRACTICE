@@ -115,6 +115,7 @@ kubectl config use-context cluster-pod-reader
 * With RBAC in Kubernetes, we can precisely manage access to resources:
 
 **Roles/RoleBindings for namespace-specific permissions.**
+
 **ClusterRoles/ClusterRoleBindings for cluster-wide permissions.**
 * This ensures secure and granular control over who can access your cluster resources. 🛡️
 
