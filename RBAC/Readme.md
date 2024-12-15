@@ -6,11 +6,11 @@
 ## 1️⃣ Creating a Kubernetes User with OpenSSL 🔐
 * We can generate a certificate signing request (CSR) and sign it with the Kubernetes CA to create a new user.
 
-* 1 . **Generate a private key:**
+* 1. **Generate a private key:**
 ```bash
 openssl genrsa -out pod-reader.key 2048
 ```
-* 2 . **Create a CSR (Certificate Signing Request)::**
+* 2. **Create a CSR (Certificate Signing Request)::**
 ```bash
 openssl req -new -key pod-reader.key -out pod-reader.csr -subj "/CN=pod-reader"
 ```
