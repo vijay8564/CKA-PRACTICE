@@ -12,31 +12,31 @@ for user in pod-creator-role pod-creator-cluster-role; do
   kubectl config set-credentials ${user} --client-certificate=${user}.crt --client-key=${user}.key
 
   # Create ClusterRole if it doesn't exist
-  if ! kubectl get clusterrole ${user} &>/dev/null; then
-    kubectl create clusterrole pod-creator-cluster-role --verb=get,list,watch,create,update --resource=pods
+  if ! kubectl get clusterrole ${user}-cluster-role &>/dev/null; then
+    kubectl create clusterrole ${user}-cluster-role --verb=get,list,watch,create,update --resource=pods
   else
-    echo "ClusterRole 'pod-creator-cluster-role' already exists."
+    echo "ClusterRole '${user}-cluster-role' already exists."
   fi
 
   # Create ClusterRoleBinding if it doesn't exist
-  if ! kubectl get clusterrolebinding ${user} &>/dev/null; then
-    kubectl create clusterrolebinding pod-creator-cluster-role --clusterrole=pod-creator-cluster-role --user=pod-creator-cluster-role
+  if ! kubectl get clusterrolebinding ${user}-cluster-role-binding &>/dev/null; then
+    kubectl create clusterrolebinding ${user}-cluster-role-binding --clusterrole=${user}-cluster-role --user=${user}
   else
-    echo "ClusterRoleBinding 'pod-creator-cluster-role' already exists."
+    echo "ClusterRoleBinding '${user}-cluster-role-binding' already exists."
   fi
 
   # Create Role if it doesn't exist
-  if ! kubectl get role ${user} -n default &>/dev/null; then
-    kubectl create role pod-creator-role --verb=get,list,watch,create,update --resource=pods --namespace=default
+  if ! kubectl get role ${user}-role -n default &>/dev/null; then
+    kubectl create role ${user}-role --verb=get,list,watch,create,update --resource=pods --namespace=default
   else
-    echo "Role 'pod-creator-role' already exists."
+    echo "Role '${user}-role' already exists."
   fi
 
   # Create RoleBinding if it doesn't exist
-  if ! kubectl get rolebinding ${user} -n default &>/dev/null; then
-    kubectl create rolebinding pod-creator-role --role=pod-creator-role --user=pod-creator-role --namespace=default
+  if ! kubectl get rolebinding ${user}-role-binding -n default &>/dev/null; then
+    kubectl create rolebinding ${user}-role-binding --role=${user}-role --user=${user} --namespace=default
   else
-    echo "RoleBinding 'pod-creator-role' already exists."
+    echo "RoleBinding '${user}-role-binding' already exists."
   fi
 
   # Set context for the user
