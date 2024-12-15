@@ -93,5 +93,31 @@ kubectl apply -f cluster-pod-reader-role.yaml
 kubectl apply -f cluster-pod-reader-rolebinding.yaml
 ```
 
+## Use contexts:
+```bash
+# view current context and all contexts
+kubectl config current-context
+kubectl config get-contexts
+# view all users
+kubectl config get-users
+# view cluster name
+kubectl config get-clusters
+# set pod-reader context
+kubectl config set-context pod-reader --cluster=kubernetes --user=pod-reader
+# use pod-readercontext
+kubectl config use-context pod-reader
+# set cluster-pod-reader
+kubectl config set-context cluster-pod-reader --cluster=kubernetes --user=cluster-pod-reader
+#use cluster-pod-reader context
+kubectl config use-context cluster-pod-reader
+```
+# 🔎 Summary
+* With RBAC in Kubernetes, we can precisely manage access to resources:
+
+**Roles/RoleBindings for namespace-specific permissions.**
+**ClusterRoles/ClusterRoleBindings for cluster-wide permissions.**
+* This ensures secure and granular control over who can access your cluster resources. 🛡️
+
+
 
 
