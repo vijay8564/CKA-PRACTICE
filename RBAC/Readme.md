@@ -7,3 +7,19 @@
 * We can generate a certificate signing request (CSR) and sign it with the Kubernetes CA to create a new user.
 
 * 1 . **Generate a private key:**
+```bash
+openssl genrsa -out pod-reader.key 2048
+```
+* 2 . **Create a CSR (Certificate Signing Request)::**
+```bash
+openssl req -new -key pod-reader.key -out pod-reader.csr -subj "/CN=pod-reader"
+```
+* 3. **Sign the CSR with the Kubernetes CA:**
+```bash
+sudo openssl x509 -req -in pod-reader.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out pod-reader.crt -days 365
+```
+* 4. **Configure kubectl to use the new user:**
+```bash
+kubectl config set-credentials pod-reader --client-certificate=pod-reader.crt --client-key=pod-reader.key
+```
+
