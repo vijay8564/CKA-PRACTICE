@@ -23,3 +23,41 @@ sudo openssl x509 -req -in pod-reader.csr -CA /etc/kubernetes/pki/ca.crt -CAkey 
 kubectl config set-credentials pod-reader --client-certificate=pod-reader.crt --client-key=pod-reader.key
 ```
 
+## 2️⃣ Creating a Role and RoleBinding for Namespace Access 🛠️
+* Grant the pod-reader user permissions to list and get pods within a specific namespace.
+* 1. **Create a Role:**
+```bash
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-reader
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+```
+
+* 2. **Create a RoleBinding:**
+```bash
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-reader-binding
+  namespace: default
+subjects:
+  - kind: User
+    name: pod-reader
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+* 3. **Apply the Role and RoleBinding:**
+```bash
+kubectl apply -f pod-reader-role.yaml
+kubectl apply -f pod-reader-rolebinding.yaml
+```
+
+
