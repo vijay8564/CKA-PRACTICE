@@ -6,4 +6,4 @@
 ## 1️⃣ Creating a Kubernetes User with OpenSSL 🔐
 * We can generate a certificate signing request (CSR) and sign it with the Kubernetes CA to create a new user.
 
-* 1. **Generate a private key:**
+* 1 . **Generate a private key:**
