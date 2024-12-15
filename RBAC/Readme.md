@@ -59,5 +59,39 @@ roleRef:
 kubectl apply -f pod-reader-role.yaml
 kubectl apply -f pod-reader-rolebinding.yaml
 ```
+## 3️⃣ Creating a ClusterRole and ClusterRoleBinding for Cluster-Wide Access 🌐
+* To grant cluster-wide pod access to pod-reader:
+* 1. **Create a ClusterRole:**
+```bash
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-pod-reader
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+```
+* 2. **Create a ClusterRoleBinding:**
+```bash
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-pod-reader-binding
+subjects:
+  - kind: User
+    name: pod-reader
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cluster-pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+* 3. **Apply the ClusterRole and ClusterRoleBinding:**
+```bash
+kubectl apply -f cluster-pod-reader-role.yaml
+kubectl apply -f cluster-pod-reader-rolebinding.yaml
+```
+
 
 
