@@ -28,3 +28,8 @@
 * `kube-apiserver` reads from and writes to etcd to handle cluster requests.
 * `kube-controller-manager` watches etcd for changes and maintains the desired state of the cluster.
 * `kube-scheduler` reads from etcd to determine where to schedule pods.
+
+## 🔹 Key Operations with etcd:
+* `Backup`: To protect your cluster's state.
+* `Restore`: To recover from failures.
+* `Scaling`: Deploy etcd as a multi-node cluster for high availability.
