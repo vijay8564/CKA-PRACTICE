@@ -25,6 +25,6 @@
 
 ## 🔹 How Kubernetes Uses etcd:
 
-    * `*kube-apiserver*` reads from and writes to etcd to handle cluster requests.
-    * `*kube-controller-manager*` watches etcd for changes and maintains the desired state of the cluster.
-    * `*kube-scheduler*` reads from etcd to determine where to schedule pods.
+    * `kube-apiserver` reads from and writes to etcd to handle cluster requests.
+    * `kube-controller-manager` watches etcd for changes and maintains the desired state of the cluster.
+    * `kube-scheduler` reads from etcd to determine where to schedule pods.
