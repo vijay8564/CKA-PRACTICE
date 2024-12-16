@@ -83,7 +83,7 @@ sudo mv /etc/kubernetes/manifests/etcd.yaml.bak /etc/kubernetes/manifests/etcd.y
 ```
 * Verify the deleted deployment restored or not
 ```bash
-kubectl get deployment
+kubectl get po
 ```
  
 
