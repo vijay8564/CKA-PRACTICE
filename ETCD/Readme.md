@@ -15,3 +15,10 @@
 * 4. **Secure:**
    *Supports encryption, authentication, and TLS for secure communication.
 
+## 🔹 Why is etcd Important in Kubernetes?
+* In Kubernetes, etcd serves as the "single source of truth" for the cluster. It stores:
+
+    * `Cluster State`: Nodes, pods, services, deployments, configurations.
+    * `Secrets and ConfigMaps`: Sensitive information and application settings.
+    * `Resource Quotas and Policies`: Limits and rules for cluster operations.
+* If etcd fails or becomes corrupted, the Kubernetes cluster cannot function properly because the control plane relies on it for all operations.
