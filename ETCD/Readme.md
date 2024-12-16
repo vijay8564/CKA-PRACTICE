@@ -33,3 +33,58 @@
 * `Backup`: To protect your cluster's state.
 * `Restore`: To recover from failures.
 * `Scaling`: Deploy etcd as a multi-node cluster for high availability.
+
+## 🔹 Commands to Interact with etcd:
+* install `etcdctl` command line tool.
+```bash
+sudo apt  install etcd-client
+```
+* Export etcd variables
+```bash
+export ETCDCTL_API=3
+export ETCDCTL_ENDPOINTS="https://127.0.0.1:2379"
+export ETCDCTL_CACERT="/etc/kubernetes/pki/etcd/ca.crt"
+export ETCDCTL_CERT="/etc/kubernetes/pki/etcd/server.crt"
+export ETCDCTL_KEY="/etc/kubernetes/pki/etcd/server.key"
+```
+* create nginx deployment
+```bash
+kubectl create deployment nginx --image nginx --replicas 4
+kubectl get po
+```
+* Take etcd snapshot
+```bash
+etcdctl snapshot save backup.db
+```
+* Check status of snapshot
+```bash
+etcdctl snapshot status backup.db
+```
+* Delete the deployment
+```bash
+kubectl delete deploy nginx
+```
+* Stop etcd Pod
+```bash
+sudo mv /etc/kubernetes/manifests/etcd.yaml /etc/kubernetes/manifests/etcd.yaml.bak
+```
+* Restore the etcd Data
+```bash
+sudo etcdctl snapshot restore backup.db --data-dir /var/lib/etcd-new
+```
+* Replace the Existing Data Directory
+```bash
+sudo mv /var/lib/etcd /var/lib/etcd.bak
+sudo mv /var/lib/etcd-new /var/lib/etcd
+```
+* Restart the etcd Pod
+```bash
+sudo mv /etc/kubernetes/manifests/etcd.yaml.bak /etc/kubernetes/manifests/etcd.yaml
+```
+* Verify the deleted deployment restored or not
+```bash
+kubectl get deployment
+```
+ 
+
+
