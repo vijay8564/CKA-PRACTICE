@@ -22,3 +22,9 @@
     * `Secrets and ConfigMaps`: Sensitive information and application settings.
     * `Resource Quotas and Policies`: Limits and rules for cluster operations.
 * If etcd fails or becomes corrupted, the Kubernetes cluster cannot function properly because the control plane relies on it for all operations.
+
+## 🔹 How Kubernetes Uses etcd:
+
+    * `*kube-apiserver*` reads from and writes to etcd to handle cluster requests.
+    * `*kube-controller-manager*` watches etcd for changes and maintains the desired state of the cluster.
+    * `*kube-scheduler*` reads from etcd to determine where to schedule pods.
