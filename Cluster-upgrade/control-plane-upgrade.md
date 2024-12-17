@@ -1,5 +1,5 @@
 # Upgrading kubeadm clusters
-## Upgrade a primary control plane node
+## Upgrade a control plane node
 * **Changing the package repository**
 ```bash
 sudo cat /etc/apt/sources.list.d/kubernetes.list
@@ -16,7 +16,8 @@ sudo cat /etc/apt/sources.list.d/kubernetes.list
 sudo apt update
 sudo apt-cache madison kubeadm
 ```
-* **Upgrading control plane nodes**
+### Call "kubeadm upgrade"**
+* **kubeadm upgrade**
 ```bash
 # replace x in 1.32.x-* with the latest patch version
 sudo apt-mark unhold kubeadm && \
@@ -27,3 +28,38 @@ sudo apt-mark hold kubeadm
   ```bash
   kubeadm version
   ```
+* Verify the upgrade plan
+```bash
+sudo kubeadm upgrade plan
+```
+* Choose a version to upgrade to, and run the appropriate command
+```bash
+# replace x with the patch version you picked for this upgrade
+sudo kubeadm upgrade apply v1.32.x
+```
+* Drain the node
+```bash
+# replace <node-to-drain> with the name of your node you are draining
+kubectl drain <node-to-drain> --ignore-daemonsets
+```
+### Upgrade kubelet and kubectl
+
+* **Upgrade the kubelet and kubectl**
+```bash
+sudo apt-mark unhold kubelet kubectl && \
+sudo apt-get update && sudo apt-get install -y kubelet='1.32.x-*' kubectl='1.32.x-*' && \
+sudo apt-mark hold kubelet kubectl
+```
+* Restart the kubelet
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+```
+* Uncordon the node
+```bash
+kubectl uncordon <node-to-uncordon>
+```
+* Verify the status of the cluster
+```bash
+kubectl get nodes
+```
