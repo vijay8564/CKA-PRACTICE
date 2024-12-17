@@ -24,20 +24,20 @@ sudo apt-mark unhold kubeadm && \
 sudo apt-get update && sudo apt-get install -y kubeadm='1.32.x-*' && \
 sudo apt-mark hold kubeadm
 ```
-  * Verify that the download works and has the expected version
+  * **Verify that the download works and has the expected version**
   ```bash
   kubeadm version
   ```
-* Verify the upgrade plan
+* **Verify the upgrade plan**
 ```bash
 sudo kubeadm upgrade plan
 ```
-* Choose a version to upgrade to, and run the appropriate command
+* **Choose a version to upgrade to, and run the appropriate command**
 ```bash
 # replace x with the patch version you picked for this upgrade
 sudo kubeadm upgrade apply v1.32.x
 ```
-* Drain the node
+* **Drain the node**
 ```bash
 # replace <node-to-drain> with the name of your node you are draining
 kubectl drain <node-to-drain> --ignore-daemonsets
@@ -50,16 +50,16 @@ sudo apt-mark unhold kubelet kubectl && \
 sudo apt-get update && sudo apt-get install -y kubelet='1.32.x-*' kubectl='1.32.x-*' && \
 sudo apt-mark hold kubelet kubectl
 ```
-* Restart the kubelet
+* **Restart the kubelet**
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 ```
-* Uncordon the node
+* **Uncordon the node**
 ```bash
 kubectl uncordon <node-to-uncordon>
 ```
-* Verify the status of the cluster
+* **Verify the status of the cluster**
 ```bash
 kubectl get nodes
 ```
