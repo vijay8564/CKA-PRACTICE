@@ -17,7 +17,7 @@ sudo apt update
 sudo apt-cache madison kubeadm
 ```
 * **Upgrading control plane nodes**
-``bash
+```bash
 # replace x in 1.32.x-* with the latest patch version
 sudo apt-mark unhold kubeadm && \
 sudo apt-get update && sudo apt-get install -y kubeadm='1.32.x-*' && \
