@@ -14,8 +14,8 @@
 * 4. **Graceful Transitions**
    * Rollouts include strategies like:
 
-* 'Rolling Updates': Replaces old pods gradually with new pods.
-* 'Blue/Green Deployment': Maintains both old and new versions, switching traffic to the new version only when ready.
+   * `Rolling Updates`: Replaces old pods gradually with new pods.
+   * `Blue/Green Deployment`: Maintains both old and new versions, switching traffic to the new version only when ready.
 * 5. **Rollback Management**
 * If something goes wrong, rollouts can be easily reversed to a previous stable state using a rollback. Kubernetes maintains the history of deployments for this purpose.
 
