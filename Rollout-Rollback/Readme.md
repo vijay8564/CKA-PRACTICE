@@ -51,35 +51,36 @@ kubectl rollout history deployment <deployment-name>
    ```bash
    kubectl rollout status deployment <deployment-name>
    ```
-DaemonSets
+### DaemonSets
 
-Use Case: Ensuring a pod runs on every node (e.g., monitoring agents, logging services).
-Rollout Behavior: Updates pods on nodes gradually, similar to Deployments.
-Example command:
+   * `Use Case`: Ensuring a pod runs on every node (e.g., monitoring agents, logging services).
+   * `Rollout Behavior`: Updates pods on nodes gradually, similar to Deployments.
+   * Example command:
+   ```bash
+   kubectl rollout status daemonset <daemonset-name>
+   ```
+### StatefulSets
 
-bash
-Copy code
-kubectl rollout status daemonset <daemonset-name>
-StatefulSets
+  * `Use Case`: Managing stateful applications (e.g., databases like MySQL, Kafka brokers).
+  * `Rollout Behavior`: Updates pods one by one in a specific order, maintaining identity and state.
+  * Example command:
+  ```bash
+  kubectl rollout status statefulset <statefulset-name>
+  ```
+### ReplicaSets
 
-Use Case: Managing stateful applications (e.g., databases like MySQL, Kafka brokers).
-Rollout Behavior: Updates pods one by one in a specific order, maintaining identity and state.
-Example command:
+  * Use Case: Ensuring a specified number of pod replicas (used indirectly by Deployments).
+  * Note: Although rollouts are typically managed via Deployments, you can manually scale or update ReplicaSets.
 
-bash
-Copy code
-kubectl rollout status statefulset <statefulset-name>
-ReplicaSets
+### Custom Resources (CRDs)
+  * `Use Case`: If you define custom resources that manage workloads (e.g., Operators), they can implement rollout-like behavior depending on their controller logic.
 
-Use Case: Ensuring a specified number of pod replicas (used indirectly by Deployments).
-Note: Although rollouts are typically managed via Deployments, you can manually scale or update ReplicaSets.
-Custom Resources (CRDs)
-
-Use Case: If you define custom resources that manage workloads (e.g., Operators), they can implement rollout-like behavior depending on their controller logic.
-🔹 What Rollouts Do Across These Resources
-Update Management: Ensures pods are updated gradually to avoid downtime.
-History Tracking: Maintains a revision history for rollbacks.
-Rollback Capability: Enables quick rollback to a previous stable state.
-Strategy Control: Supports different update strategies, such as rolling updates or on-delete updates.
-✅ Conclusion
-While Deployments are the most commonly associated resource with rollouts, DaemonSets, StatefulSets, and other Kubernetes controllers also support rollout management. This makes rollouts a powerful mechanism for updating and maintaining various types of workloads in Kubernetes.
+## 🔹 What Rollouts Do Across These Resources
+* `Update Management`: Ensures pods are updated gradually to avoid downtime.
+* `History Tracking`: Maintains a revision history for rollbacks.
+* `Rollback Capability`: Enables quick rollback to a previous stable state.
+* `Strategy Control`: Supports different update strategies, such as rolling updates or on-delete updates.
+ 
+## ✅ Conclusion
+* While Deployments are the most commonly associated resource with rollouts, DaemonSets, StatefulSets, and other Kubernetes controllers also support rollout management.
+*  This makes rollouts a powerful mechanism for updating and maintaining various types of workloads in Kubernetes.
