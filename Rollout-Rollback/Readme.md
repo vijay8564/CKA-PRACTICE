@@ -33,6 +33,9 @@ kubectl rollout resume deployment <deployment-name>
 #Undo (Rollback) a Rollout
 kubectl rollout undo deployment <deployment-name>
 
+#Undo (Rollback) a Rollout to specific revision
+kubectl rollout undo deployment <deployment-name> --to-revision=3
+
 #View Rollout History
 kubectl rollout history deployment <deployment-name>
 ```
