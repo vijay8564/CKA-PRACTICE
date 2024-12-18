@@ -3,16 +3,16 @@
 
 ## 🔹 What Does a Rollout Manage?
 * 1. **New Version Updates**
-* When you update the container image or configuration of a Deployment, Kubernetes manages the rollout by progressively replacing the old pods with new pods, ensuring your application remains available throughout the process.
+   * When you update the container image or configuration of a Deployment, Kubernetes manages the rollout by progressively replacing the old pods with new pods, ensuring your application remains available throughout the process.
 
 * 2. **Scaling**
-* Rollouts handle the scaling of pods as part of the Deployment. You can increase or decrease the number of replicas while the rollout process ensures smooth transitions.
+   * Rollouts handle the scaling of pods as part of the Deployment. You can increase or decrease the number of replicas while the rollout process ensures smooth transitions.
 
 * 3. **Version Consistency**
-* Kubernetes ensures all pods in a Deployment run the same version of the application, avoiding inconsistencies that could arise from partial updates.
+   * Kubernetes ensures all pods in a Deployment run the same version of the application, avoiding inconsistencies that could arise from partial updates.
 
 * 4. **Graceful Transitions**
-* Rollouts include strategies like:
+   * Rollouts include strategies like:
 
 * 'Rolling Updates': Replaces old pods gradually with new pods.
 * 'Blue/Green Deployment': Maintains both old and new versions, switching traffic to the new version only when ready.
