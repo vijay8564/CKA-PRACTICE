@@ -17,35 +17,27 @@
    * `Rolling Updates`: Replaces old pods gradually with new pods.
    * `Blue/Green Deployment`: Maintains both old and new versions, switching traffic to the new version only when ready.
 * 5. **Rollback Management**
-* If something goes wrong, rollouts can be easily reversed to a previous stable state using a rollback. Kubernetes maintains the history of deployments for this purpose.
+   * If something goes wrong, rollouts can be easily reversed to a previous stable state using a rollback. Kubernetes maintains the history of deployments for this purpose.
 
-🔷 Key Commands for Managing Rollouts
-Check Rollout Status
-
-bash
-Copy code
+## 🔷 Key Commands for Managing Rollouts
+```bash
+# Check Rollout Status
 kubectl rollout status deployment <deployment-name>
-Pause a Rollout
 
-bash
-Copy code
+#Pause a Rollout
 kubectl rollout pause deployment <deployment-name>
-Resume a Paused Rollout
 
-bash
-Copy code
+#Resume a Paused Rollout
 kubectl rollout resume deployment <deployment-name>
-Undo (Rollback) a Rollout
 
-bash
-Copy code
+#Undo (Rollback) a Rollout
 kubectl rollout undo deployment <deployment-name>
-View Rollout History
 
-bash
-Copy code
+#View Rollout History
 kubectl rollout history deployment <deployment-name>
-🌟 Why Rollouts Matter
-Zero Downtime: Ensure continuous service availability during updates.
-Control: Pause, resume, or rollback updates as needed.
-Automation: Kubernetes automates the complex process of managing deployments.
+```
+
+## 🌟 Why Rollouts Matter
+* `Zero Downtime`: Ensure continuous service availability during updates.
+* `Control`: Pause, resume, or rollback updates as needed.
+* `Automation`: Kubernetes automates the complex process of managing deployments.
