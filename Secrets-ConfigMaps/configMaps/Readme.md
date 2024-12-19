@@ -53,8 +53,8 @@ spec:
 * **Summary of ConfigMap Types**
 * Type	Description	Creation Command
 * 1.Literal Key-Value	Directly specify key-value pairs.	kubectl create configmap my-config --from-literal=key1=value1
-From File	Create from a single file.	kubectl create configmap my-config --from-file=file.txt
-From Multiple Files	Combine multiple files into one ConfigMap.	kubectl create configmap my-config --from-file=file1.txt --from-file=file2.txt
-From Environment Variables	Create from a .env file.	kubectl create configmap my-config --from-env-file=config.env
-Binary Data	Store base64-encoded binary data.	Manually create a YAML file with binaryData.
-These different types of ConfigMaps help you manage configuration data efficiently and flexibly in Kubernetes.
+* 2.From File	Create from a single file.	kubectl create configmap my-config --from-file=file.txt
+* 3.From Multiple Files	Combine multiple files into one ConfigMap.	kubectl create configmap my-config --from-file=file1.txt --from-file=file2.txt
+* 4.From Environment Variables	Create from a .env file.	kubectl create configmap my-config --from-env-file=config.env
+* 5.Binary Data	Store base64-encoded binary data.	Manually create a YAML file with binaryData.
+*These different types of ConfigMaps help you manage configuration data efficiently and flexibly in Kubernetes.
