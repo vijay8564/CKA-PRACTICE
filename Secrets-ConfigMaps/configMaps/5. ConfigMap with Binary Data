@@ -1,0 +1,14 @@
+# 5. ConfigMap with Binary Data
+* If you need to store binary data in a ConfigMap, you can use binaryData. The data must be base64 encoded.
+
+* **Example (YAML)**
+* `binary-configmap.yaml`
+
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-binary-config
+binaryData:
+  binary-key: ZGF0YS1pbi1iaW5hcnktZm9ybWF0  # base64-encoded data
+```
