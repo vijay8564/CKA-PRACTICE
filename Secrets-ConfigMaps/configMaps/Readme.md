@@ -10,3 +10,51 @@
 ### ConfigMap from Environment Variables
 ### ConfigMap with Binary Data
 #### Let's explore each type with examples.
+
+# Using ConfigMaps in Pods
+* Example Pod using a ConfigMap
+* You can use ConfigMaps in a Pod by mounting them as volumes or injecting them as environment variables.
+
+* `pod-using-configmap.yaml`
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-pod
+spec:
+  containers:
+    - name: my-container
+      image: nginx
+      env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: my-literal-config
+              key: app.name
+        - name: APP_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: my-literal-config
+              key: app.version
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-file-config
+```
+
+* **Explanation:**
+
+* `Environment Variables`: APP_NAME and APP_VERSION get their values from the my-literal-config ConfigMap.
+* `Mounted Volume`: The my-file-config ConfigMap is mounted at /etc/config in the container.
+
+* **Summary of ConfigMap Types**
+* Type	Description	Creation Command
+* 1.Literal Key-Value	Directly specify key-value pairs.	kubectl create configmap my-config --from-literal=key1=value1
+From File	Create from a single file.	kubectl create configmap my-config --from-file=file.txt
+From Multiple Files	Combine multiple files into one ConfigMap.	kubectl create configmap my-config --from-file=file1.txt --from-file=file2.txt
+From Environment Variables	Create from a .env file.	kubectl create configmap my-config --from-env-file=config.env
+Binary Data	Store base64-encoded binary data.	Manually create a YAML file with binaryData.
+These different types of ConfigMaps help you manage configuration data efficiently and flexibly in Kubernetes.
