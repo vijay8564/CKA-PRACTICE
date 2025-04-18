@@ -21,13 +21,18 @@ Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:de
 ```
 
 ## create a kubectl pod with pod-reader sa,role,rolebinding
+* create serviceAccount
+```bash
+kubectl create serviceaccount pod-reader
+```
+  
 * create role
 ```bash
-kubetl role pod-reader --verb=get,list,watch --resource=pods
+kubectl  create role pod-reader --verb=get,list,watch --resource=pods
 ```
 * create rolebinding (namespaced resource)
 ```bash
-kubectl create rlebinding pod-reader-rolebinding --role=pod-reader --serviceaccount=default:pod-reader --namespace=default
+kubectl create rolebinding pod-reader-rolebinding --role=pod-reader --serviceaccount=default:pod-reader --namespace=default
 ```
 * create pod with sa pod-reader
 ```bash
